@@ -3,7 +3,7 @@ package raknet
 import (
 	"bytes"
 	"fmt"
-	"github.com/sandertv/go-raknet/internal/message"
+	"github.com/firyuen/go-raknet/internal/message"
 	"log"
 	"math"
 	"math/rand"
