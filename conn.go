@@ -14,9 +14,9 @@ import (
 
 const (
 	// currentProtocol is the current RakNet protocol version. This is Minecraft specific.
-	currentProtocol byte = 10
+	currentProtocol byte = 6
 
-	maxMTUSize    = 1400
+	maxMTUSize    = 1492
 	maxWindowSize = 1024
 )
 
@@ -102,7 +102,7 @@ func newConn(conn net.PacketConn, addr net.Addr, mtuSize uint16) *Conn {
 		closed:        make(chan struct{}),
 		connected:     make(chan struct{}),
 		packets:       make(chan *bytes.Buffer, 512),
-		splits:        make(map[uint16][][]byte),
+		splits:        make(map[uint16][][]byte), 
 		datagramQueue: newDatagramQueue(),
 		packetQueue:   newPacketQueue(),
 		recoveryQueue: newRecoveryQueue(),
@@ -138,6 +138,17 @@ func (conn *Conn) startTicking() {
 			return
 		}
 	}
+}
+
+
+func (conn *Conn) Connected() bool{
+	select {
+	case <- conn.closed:
+		return true
+	default:
+		return false
+	}
+
 }
 
 // flushACKs flushes all pending datagram acknowledgements.
@@ -199,6 +210,7 @@ func (conn *Conn) Write(b []byte) (n int, err error) {
 		return n, conn.wrap(err, "write")
 	}
 }
+
 
 // write writes a buffer b over the RakNet connection. The amount of bytes written n is always equal to the
 // length of the bytes written if the write was successful. If not, an error is returned and n is 0.

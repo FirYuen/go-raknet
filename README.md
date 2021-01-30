@@ -22,7 +22,7 @@ Basic RakNet server:
 package main
 
 import (
-	"github.com/sandertv/go-raknet"
+	"github.com/firyuen/go-raknet"
 )
 
 func main() {
@@ -46,7 +46,7 @@ Basic RakNet client:
 package main
 
 import (
-	"github.com/sandertv/go-raknet"
+	"github.com/firyuen/go-raknet"
 )
 
 func main() {
@@ -60,7 +60,7 @@ func main() {
 ```
 
 ### Documentation
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/sandertv/go-raknet)](https://pkg.go.dev/github.com/sandertv/go-raknet)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/firyuen/go-raknet)](https://pkg.go.dev/github.com/firyuen/go-raknet)
 
 ## Contact
 [![Chat on Discord](https://img.shields.io/badge/Chat-On%20Discord-738BD7.svg?style=for-the-badge)](https://discord.gg/evzQR4R)
